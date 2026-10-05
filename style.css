@@ -1,0 +1,170 @@
+html, body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: #000;
+}
+
+.scene {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.9s ease, visibility 0s linear 0s;
+}
+
+.scene.hide {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.9s ease, visibility 0s linear 0.9s;
+}
+
+.layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.layer.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.bg {
+	position: absolute;
+	object-fit: cover;
+}
+
+.bg.zoom-in,
+.bg.zoom-out {
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+}
+
+.bg.zoom-in { animation-name: bg-in; }
+.bg.zoom-out { animation-name: bg-out; }
+
+.model-wrap {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.model {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: 88%;
+	object-fit: contain;
+	object-position: center bottom;
+	transform-origin: 50% 100%;
+}
+
+.model-wrap.left .model { object-position: left bottom; }
+.model-wrap.center .model { object-position: center bottom; }
+.model-wrap.right .model { object-position: right bottom; }
+
+.model.zoom-in.slide-left { animation-name: model-in-left; }
+.model.zoom-in.slide-right { animation-name: model-in-right; }
+.model.zoom-out.slide-left { animation-name: model-out-left; }
+.model.zoom-out.slide-right { animation-name: model-out-right; }
+
+.model.zoom-in.slide-left,
+.model.zoom-in.slide-right,
+.model.zoom-out.slide-left,
+.model.zoom-out.slide-right {
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+}
+
+.vignette {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.38) 100%);
+	pointer-events: none;
+}
+
+.intro {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	z-index: 5;
+	opacity: 1;
+	transition: opacity 0.9s ease;
+}
+
+.intro.gone {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.intro img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 36%;
+	height: 36%;
+	object-fit: contain;
+	opacity: 0;
+	transform: translate(-50%, -50%) scale(0.94);
+}
+
+.intro img.pop {
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+	transition: opacity 0.12s ease-out, transform 0.18s ease-out;
+}
+
+.intro img.fade {
+	opacity: 0;
+	transition: opacity 1.5s ease;
+}
+
+@keyframes bg-in {
+	from { transform: scale(1); }
+	to { transform: scale(1.18); }
+}
+
+@keyframes bg-out {
+	from { transform: scale(1.18); }
+	to { transform: scale(1); }
+}
+
+@keyframes model-in-left {
+	from { transform: translateX(36px) scale(1); }
+	to { transform: translateX(-36px) scale(1.04); }
+}
+
+@keyframes model-in-right {
+	from { transform: translateX(-36px) scale(1); }
+	to { transform: translateX(36px) scale(1.04); }
+}
+
+@keyframes model-out-left {
+	from { transform: translateX(36px) scale(1.04); }
+	to { transform: translateX(-36px) scale(1); }
+}
+
+@keyframes model-out-right {
+	from { transform: translateX(-36px) scale(1.04); }
+	to { transform: translateX(36px) scale(1); }
+}
