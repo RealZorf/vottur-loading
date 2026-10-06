@@ -1,15 +1,14 @@
 var backgrounds = [
-	"backgrounds/background01.png",
-	"backgrounds/background02.png",
-	"backgrounds/background03.png",
-	"backgrounds/background04.png",
-	"backgrounds/background05.png",
-	"backgrounds/background06.png",
-	"backgrounds/background07.png",
-	"backgrounds/background08.png",
-	"backgrounds/background09.png",
-	"backgrounds/background10.png",
-	"backgrounds/background11.png",
+	"backgrounds/background01.jpg",
+	"backgrounds/background02.jpg",
+	"backgrounds/background03.jpg",
+	"backgrounds/background04.jpg",
+	"backgrounds/background05.jpg",
+	"backgrounds/background06.jpg",
+	"backgrounds/background07.jpg",
+	"backgrounds/background08.jpg",
+	"backgrounds/background09.jpg",
+	"backgrounds/background10.jpg"
 ];
 
 var models = [
@@ -17,7 +16,7 @@ var models = [
 	"models/model02.png",
 	"models/model03.png",
 	"models/model04.png",
-	"models/model05.png",
+	"models/model05.png"
 	/*"models/model06.png",
 	"models/model07.png",
 	"models/model08.png",
