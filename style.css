@@ -123,14 +123,15 @@ html, body {
 
 .tip {
 	position: absolute;
-	left: 2.4rem;
-	bottom: 3.9rem;
+	left: 1rem;
+	bottom: 1rem;
 	z-index: 4;
-	display: block;
+	display: flex;
+	align-items: center;
 	width: 47rem;
 	height: auto;
 	box-sizing: border-box;
-	padding: 1.15rem 2.2rem 1.2rem;
+	padding: 1.5rem 1.2rem;
 	background: rgba(0, 0, 0, 0.68);
 	border: 0.35rem solid rgba(0, 0, 0, 0.92);
 	font-family: Tahoma, Verdana, sans-serif;
@@ -145,6 +146,7 @@ html, body {
 
 .tip-body {
 	overflow: hidden;
+	width: 100%;
 }
 
 .tip-icon {

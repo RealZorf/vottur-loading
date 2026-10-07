@@ -222,27 +222,13 @@ setTimeout(function () {
 }, 12500);
 
 var music = document.getElementById("music");
-var musicVol = 0.15;
-var musicMuted = false;
-music.volume = musicVol;
+music.volume = 0.10;
 music.play().catch(function () {});
-
-document.addEventListener("keydown", function (e) {
-	if (e.key !== "m" && e.key !== "M") {
-		return;
-	}
-	if (e.repeat) {
-		return;
-	}
-	musicMuted = !musicMuted;
-	music.volume = musicMuted ? 0 : musicVol;
-});
 
 var tips = [
     "Not sure how many bullets you have left? Hold R to check your current ammunition.",
     "Want to unequip your armor? Hold Q to open the radial menu.",
     "Want to change your controls? Press ESC, Keybinds to customize your keybinds.",
-    "Hate the main menu music or is it too loud? Press M to toggle the music on or off.",
     "Taking too long to finish the round? The Police or National Guard may arrive to put an end to it.",
     "Want to set up a trap? Hold R while holding a grenade to set up a tripwire.",
     "Keep an eye on your Karma. Killing innocent players can lower your Karma and may result in a short timeout.",
