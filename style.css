@@ -1,3 +1,7 @@
+html {
+	font-size: min(calc(100vh / 108), calc(100vw / 192));
+}
+
 html, body {
 	margin: 0;
 	width: 100%;
@@ -115,6 +119,68 @@ html, body {
 	height: 100%;
 	background: radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.38) 100%);
 	pointer-events: none;
+}
+
+.tip {
+	position: absolute;
+	left: 2.4rem;
+	bottom: 3.9rem;
+	z-index: 4;
+	display: block;
+	width: 47rem;
+	height: auto;
+	box-sizing: border-box;
+	padding: 1.15rem 2.2rem 1.2rem;
+	background: rgba(0, 0, 0, 0.68);
+	border: 0.35rem solid rgba(0, 0, 0, 0.92);
+	font-family: Tahoma, Verdana, sans-serif;
+	pointer-events: none;
+	opacity: 1;
+	transition: opacity 0.9s ease;
+}
+
+.tip.hide {
+	opacity: 0;
+}
+
+.tip-body {
+	overflow: hidden;
+}
+
+.tip-icon {
+	float: left;
+	position: relative;
+	width: 1.8rem;
+	height: 1.8rem;
+	margin: 0 0.55rem 0 0;
+	border-radius: 50%;
+	background: #fff;
+	isolation: isolate;
+}
+
+.tip-icon::after {
+	content: "i";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	transform: translateY(-54%);
+	font-family: "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+	font-size: 1.35rem;
+	font-style: italic;
+	font-weight: 700;
+	line-height: 1;
+	text-align: center;
+	color: #000;
+	mix-blend-mode: destination-out;
+}
+
+.tip-text {
+	font-size: 1.6rem;
+	font-weight: 500;
+	line-height: 1.8rem;
+	letter-spacing: 0;
+	color: #fff;
 }
 
 .intro {

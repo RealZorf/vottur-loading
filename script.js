@@ -166,6 +166,7 @@ function prepareNext() {
 function reveal(ms) {
 	afterPaint(function () {
 		scene.classList.remove("hide");
+		showTip();
 		prepareNext();
 		setTimeout(swap, ms);
 	});
@@ -174,11 +175,13 @@ function reveal(ms) {
 function swap() {
 	var next = 1 - active;
 
+	hideTip();
 	scene.classList.add("hide");
 
 	whenHidden(function () {
 		(nextReady || loadPair(layers[next])).then(function () {
 			nextReady = null;
+			nextTip();
 			var ms = panTime();
 			showLayer(next);
 			startPan(layers[next], ms);
@@ -219,5 +222,61 @@ setTimeout(function () {
 }, 12500);
 
 var music = document.getElementById("music");
-music.volume = 0.35;
+var musicVol = 0.15;
+var musicMuted = false;
+music.volume = musicVol;
 music.play().catch(function () {});
+
+document.addEventListener("keydown", function (e) {
+	if (e.key !== "m" && e.key !== "M") {
+		return;
+	}
+	if (e.repeat) {
+		return;
+	}
+	musicMuted = !musicMuted;
+	music.volume = musicMuted ? 0 : musicVol;
+});
+
+var tips = [
+    "Not sure how many bullets you have left? Hold R to check your current ammunition.",
+    "Want to unequip your armor? Hold Q to open the radial menu.",
+    "Want to change your controls? Press ESC, Keybinds to customize your keybinds.",
+    "Hate the main menu music or is it too loud? Press M to toggle the music on or off.",
+    "Taking too long to finish the round? The Police or National Guard may arrive to put an end to it.",
+    "Want to set up a trap? Hold R while holding a grenade to set up a tripwire.",
+    "Keep an eye on your Karma. Killing innocent players can lower your Karma and may result in a short timeout.",
+    "Did you know? You can improve your Karma by healing other players or taking out traitors.",
+    "Know the rules before you break them. Type !motd in chat to view the server rules.",
+    "Watch the rooftops. Danger isn't always on the ground.",
+];
+
+var tipBox = document.getElementById("tip");
+var tipText = document.getElementById("tip-text");
+var lastTip = "";
+
+function setTip(text) {
+	if (!tipText) {
+		return;
+	}
+	lastTip = text;
+	tipText.textContent = text;
+}
+
+function nextTip() {
+	setTip(pick(tips, lastTip));
+}
+
+function showTip() {
+	if (tipBox) {
+		tipBox.classList.remove("hide");
+	}
+}
+
+function hideTip() {
+	if (tipBox) {
+		tipBox.classList.add("hide");
+	}
+}
+
+nextTip();
