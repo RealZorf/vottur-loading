@@ -16,10 +16,10 @@ var models = [
 	"models/model02.png",
 	"models/model03.png",
 	"models/model04.png",
-	"models/model05.png"
-	/*"models/model06.png",
+	"models/model05.png",
+	"models/model06.png",
 	"models/model07.png",
-	"models/model08.png",
+	/*"models/model08.png",
 	"models/model09.png",
 	"models/model10.png",*/
 ];
