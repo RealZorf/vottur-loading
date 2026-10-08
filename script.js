@@ -20,8 +20,8 @@ var models = [
 	"models/model06.png",
 	"models/model07.png",
 	"models/model08.png",
-	/*"models/model09.png",
-	"models/model10.png",*/
+	"models/model09.png",
+	//"models/model10.png",
 ];
 
 var scene = document.getElementById("scene");
