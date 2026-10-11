@@ -21,7 +21,8 @@ var models = [
 	"models/model07.png",
 	"models/model08.png",
 	"models/model09.png",
-	//"models/model10.png",
+	"models/model10.png",
+	"models/model11.png"
 ];
 
 var scene = document.getElementById("scene");
