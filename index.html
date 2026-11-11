@@ -3,153 +3,19 @@
 <head>
 <meta charset="utf-8">
 <title>Loading</title>
-<style>
-  html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    overflow: hidden;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    color: #fff;
-  }
-
-  #bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  #bg img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    opacity: 0;
-  }
-
-  #shade {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 32vh;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
-    pointer-events: none;
-  }
-
-  #panel {
-    position: fixed;
-    right: 40px;
-    bottom: 32px;
-    left: 40px;
-  }
-
-  #server {
-    font-size: 28px;
-    font-weight: 600;
-    text-shadow: 0 2px 10px #000;
-  }
-
-  #meta, #status {
-    margin-top: 6px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.82);
-    text-shadow: 0 1px 8px #000;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  #track {
-    margin-top: 14px;
-    margin-right: 16vw;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.28);
-  }
-
-  #fill {
-    height: 100%;
-    width: 0;
-    background: rgb(35, 225, 110);
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="bg"></div>
 <div id="shade"></div>
 <div id="panel">
   <div id="server">Connecting…</div>
-  <div id="meta"></div>
-  <div id="status">Waiting for server</div>
+  <div id="row">
+    <div id="map"></div>
+    <div id="status"></div>
+  </div>
   <div id="track"><div id="fill"></div></div>
 </div>
-<script>
-const fade = 1500;
-const bg = document.getElementById("bg");
-const slides = [];
-
-for (let n = 1; n <= 11; n++) {
-  const img = new Image();
-  img.src = "backgrounds/" + n + ".jpg";
-  img.alt = "";
-  bg.appendChild(img);
-  slides.push(img);
-}
-
-let current = Math.floor(Math.random() * slides.length);
-let z = 1;
-slides[current].style.zIndex = z;
-slides[current].style.opacity = "1";
-
-if (slides.length > 1) {
-  setInterval(function () {
-    const prev = slides[current];
-    current = (current + 1) % slides.length;
-    const next = slides[current];
-
-    next.style.transition = "none";
-    next.style.opacity = "0";
-    next.style.zIndex = ++z;
-    void next.offsetWidth;
-    next.style.transition = "opacity " + fade + "ms ease";
-    next.style.opacity = "1";
-
-    setTimeout(function () {
-      prev.style.transition = "none";
-      prev.style.opacity = "0";
-    }, fade);
-  }, 10000);
-}
-
-let filesTotal = 0;
-
-function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
-  document.getElementById("server").textContent = servername;
-  document.getElementById("meta").textContent = mapname;
-}
-
-function SetStatusChanged(status) {
-  document.getElementById("status").textContent = status;
-}
-
-function SetFilesTotal(total) {
-  filesTotal = total;
-}
-
-function SetFilesNeeded(needed) {
-  document.getElementById("fill").style.width = (filesTotal > 0 ? Math.min(100, ((filesTotal - needed) / filesTotal) * 100) : 0) + "%";
-}
-
-function DownloadingFile(fileName) {
-  document.getElementById("status").textContent = fileName;
-}
-</script>
+<script src="script.js"></script>
 </body>
 </html>
