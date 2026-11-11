@@ -69,6 +69,7 @@
 
   #track {
     margin-top: 14px;
+    margin-right: 16vw;
     height: 3px;
     background: rgba(255, 255, 255, 0.28);
   }
@@ -76,7 +77,7 @@
   #fill {
     height: 100%;
     width: 0;
-    background: #fff;
+    background: rgb(35, 225, 110);
   }
 </style>
 </head>
@@ -131,7 +132,7 @@ let filesTotal = 0;
 
 function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
   document.getElementById("server").textContent = servername;
-  document.getElementById("meta").textContent = mapname + "  ·  " + gamemode + "  ·  " + maxplayers + " players";
+  document.getElementById("meta").textContent = mapname;
 }
 
 function SetStatusChanged(status) {
