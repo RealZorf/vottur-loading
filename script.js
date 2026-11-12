@@ -35,6 +35,7 @@ if (slides.length > 1) {
   }, 10000);
 }
 
+const track = document.getElementById("track");
 const fill = document.getElementById("fill");
 const statusEl = document.getElementById("status");
 let filesTotal = 0;
@@ -43,15 +44,22 @@ let gotNeeded = false;
 let filesSeen = 0;
 
 function paint() {
-  let pct = 0;
+  let pct = -1;
 
-  if (filesTotal > 0) {
+  if (filesTotal > 0 && (gotNeeded || filesSeen > 0)) {
     const fromCount = gotNeeded ? Math.max(0, filesTotal - filesNeeded) : 0;
     pct = (Math.max(fromCount, Math.min(filesSeen, filesTotal)) / filesTotal) * 100;
-  } else if (filesSeen > 0) {
-    pct = Math.min(92, 100 * (1 - Math.exp(-filesSeen * 0.35)));
   }
 
+  if (pct <= 0) {
+    fill.style.width = "";
+    fill.style.transform = "";
+    track.classList.add("indeterminate");
+    return;
+  }
+
+  track.classList.remove("indeterminate");
+  fill.style.transform = "none";
   fill.style.width = Math.min(100, pct) + "%";
 }
 
